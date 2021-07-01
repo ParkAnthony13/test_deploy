@@ -1,0 +1,58 @@
+
+.start {
+    display: flex;
+    justify-content: center;
+}
+
+.col {
+    flex:1;
+    padding: 2em;
+}
+
+.field {
+    margin: 1.5em;
+}
+
+.place {
+    display: flex;
+    justify-content:flex-end;
+}
+.recipe_form {
+    display: flex;
+    justify-content: center;
+}
+.main_left {
+    width: 50%;
+}
+.field {
+    margin: 1.5em;
+}
+
+.validations {
+    display:inline-block;
+}
+
+.success {
+    color:white;
+    background-color: green;
+}
+.rows {
+    display:flex;
+}
+
+.tleft {
+    flex: 1;
+}
+.tright {
+    flex: 1;
+    text-align: center;
+    padding: 0px 1.5em;
+}
+
+.user_page {
+    display: flex;
+}
+
+.up_table {
+    margin: 5px;
+}

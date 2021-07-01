@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css' rel='stylesheet'
+        integrity='sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x' crossorigin='anonymous'>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="navbar">
+            <h1 class='justify-content-start'>Edit Band</h1>
+            <ul class="nav justify-content-end">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Edit Band listing</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Log Out</a>
+                </li>
+            </ul>
+        </div>
+        <div class="main">
+            <div class="main_left">
+                <h1>Edit {{ band.name }}</h1>
+                <form action="/update/process" method='post' class="d-flex flex-column flex-wrap recipe_form">
+                    <input type="hidden" name="id" value="{{ band.id }}">
+                    <div class="input-group mb-3 field">
+                        <span class="input-group-text" id="basic-addon1">Name: </span>
+                        <input name="name" type="text" class="form-control" aria-label="Username"
+                            aria-describedby="basic-addon1" value="{{ band.name }}">
+                    </div>
+                    <div class="input-group flex-nowrap field">
+                        <span class="input-group-text" id="addon-wrapping">Genre: </span>
+                        <input name="genre" type="text" class="form-control" value="{{ band.genre }}" aria-label="Username" aria-describedby="addon-wrapping">
+                    </div>
+                    <div class="input-group flex-nowrap field">
+                        <span class="input-group-text" id="addon-wrapping">Home City</span>
+                        <input name="home_city" type="text" class="form-control" value="{{ band.home_city }}" aria-label="Username" aria-describedby="addon-wrapping">
+                    </div>
+                    <button action="/update/process" type="submit" class="btn btn-outline-info main_left">Update</button>
+                </form>
+            </div>
+            <div class="validations">
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p style="color: red;">{{ message }}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+            <div class="start">
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='my_script.js') }}"></script>
+</body>
+
+</html>

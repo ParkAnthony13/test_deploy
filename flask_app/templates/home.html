@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css' rel='stylesheet'
+        integrity='sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x' crossorigin='anonymous'>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>Home</title>
+</head>
+
+<body>
+    <div class="container">
+        <ul class="nav justify-content-end">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">Log In / Register</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                {% if session['user_id'] %}
+                <a class="nav-link" href="/">Log Out</a>
+                {% endif %}
+            </li>
+        </ul>
+        <div class="main">
+            <div class="start">
+                <form action ="/process" method='post' class="col">
+                    <h1 class="field">Register</h1>
+                    <div class="input-group flex-wrap field">
+                        <span class="input-group-text">First and last name</span>
+                        <input name="first_name" type="text" aria-label="First name" class="form-control">
+                        <input name="last_name" type="text" aria-label="Last name" class="form-control">
+                    </div>
+                    <div class="validations">
+                        {% with messages = get_flashed_messages(category_filter=["name"]) %}
+                        {% if messages %}
+                            {% for message in messages %}
+                                <p style="color: red;">{{ message }}</p>
+                            {% endfor %}
+                        {% endif %}
+                        {% endwith %}
+                    </div>
+                    <div class="input-group flex-nowrap field">
+                        <span class="input-group-text" id="addon-wrapping">Email</span>
+                        <input name="email" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
+                    </div>
+                    <div class="validations">
+                        {% with messages = get_flashed_messages(category_filter=["emailError"]) %}
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <p style="color: red;">{{ message }}</p>
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+                    </div> 
+                    <div class="input-group flex-nowrap field">
+                        <span class="input-group-text" id="addon-wrapping">Password</span>
+                        <input name="password" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
+                    </div>
+                    <div class="validations">
+                        {% with messages = get_flashed_messages(category_filter=["password"]) %}
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <p style="color: red;">{{ message }}</p>
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+                    </div> 
+                    <div class="input-group flex-nowrap field">
+                        <span class="input-group-text" id="addon-wrapping">Confirm Password</span>
+                        <input name="confirm" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
+                    </div>
+                    <div class="validations">
+                        {% with messages = get_flashed_messages(category_filter=["confirm"]) %}
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <p style="color: red;">{{ message }}</p>
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+                    </div> 
+                    <div class="place">
+                        <button type="submit" href='/process' class="button btn btn-lg btn-outline-info">Register</button>
+                    </div>
+                </form>
+                <form action="/login" method='post' class="col">
+                    <h1 class="field">Login</h1>
+                    <div class="input-group flex-nowrap field">
+                        <span class="input-group-text" id="addon-wrapping">Email</span>
+                        <input name="login_email" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
+                    </div>
+                    <div class="input-group flex-nowrap field">
+                        <span class="input-group-text" id="addon-wrapping">Password</span>
+                        <input name="login_password" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
+                    </div>
+                    <div class="validations">
+                        {% with messages = get_flashed_messages(category_filter=["perror"]) %}
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <p style="color: red;">{{ message }}</p>
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+                    </div>
+                    <div class="place">
+                        <button type="submit" href='/login' class="button btn btn-lg btn-outline-info">Log in</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+    crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
